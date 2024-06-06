@@ -1,0 +1,106 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type CustomerGroupType {
+  group: String!
+  group1: String!
+  group2: String!
+  group3: String!
+  group4: String!
+  group5: String!
+}
+
+type PaymentMethodType {
+  clientId: String!
+  typeCredit: String!
+  creditLimit: Float!
+  creditUsed: Float!
+  amountAvailable: Float!
+}
+
+type UpdateDateType {
+  date: String!
+}
+
+type ClientType {
+  address: String!
+  blocked: String!
+  cellPhone: String!
+  channel: String!
+  clientId: String!
+  country: String!
+  customerGroup: CustomerGroupType!
+  customerSchema: Float!
+  distrChan: String!
+  division: String!
+  fiscalCode1: String!
+  fiscalCode2: String!
+  frequency: Boolean!
+  frequencyDays: String!
+  idPortfolio: String!
+  immediateDelivery: Boolean!
+  industryCode: String!
+  industryCode1: String!
+  isEnrollment: Boolean!
+  name: String!
+  name2: String!
+  office: String!
+  paymentCondition: String!
+  paymentMethods: [PaymentMethodType!]!
+  priceGroup: String!
+  priceList: String!
+  routeId: String!
+  salesOrg: String!
+  supplyCenter: String!
+  updateDate: UpdateDateType!
+  vendorGroup: String!
+}
+
+type TaxType {
+  taxType: String!
+  taxId: String!
+  rate: Float!
+}
+
+type PriceType {
+  full_price: Float!
+  taxes: [TaxType!]!
+}
+
+type ItemType {
+  sku: String!
+  title: String!
+  categoryId: String
+  category: String!
+  brand: String
+  classification: String
+  unitsPerBox: String!
+  minOrderUnits: String
+  packageDescription: String!
+  packageUnitDescription: String!
+  quantity_max_redeem: Float
+  redeem_unit: Float
+  order_reason_redeem: String
+  sku_redeem: Float
+  price: PriceType!
+  points: Float!
+}
+
+type PortfolioType {
+  channel: String!
+  country: String!
+  customerCode: String!
+  items: [ItemType!]!
+  route: String!
+  clientId: String!
+}
+
+type ClientPortfolioType {
+  client: ClientType!
+  portfolios: [PortfolioType!]!
+}
+
+type Query {
+  getClientPortfolios: [ClientPortfolioType!]!
+}
