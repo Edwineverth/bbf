@@ -4,7 +4,6 @@ export interface PortfolioDto {
   customerCode: string;
   items: Item[];
   route: string;
-  clientId: string;
 }
 
 export interface Item {

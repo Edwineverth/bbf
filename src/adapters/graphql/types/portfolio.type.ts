@@ -88,7 +88,4 @@ export class PortfolioType {
 
   @Field()
   route: string;
-
-  @Field()
-  clientId: string;
 }

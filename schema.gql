@@ -93,7 +93,6 @@ type PortfolioType {
   customerCode: String!
   items: [ItemType!]!
   route: String!
-  clientId: String!
 }
 
 type ClientPortfolioType {
@@ -102,5 +101,68 @@ type ClientPortfolioType {
 }
 
 type Query {
-  getClientPortfolios: [ClientPortfolioType!]!
+  getClientsPortfolios: [ClientPortfolioType!]!
+  getClientAndPortfolioById(clientId: String!): ClientPortfolioType!
+  getClientById(clientId: String!): ClientType!
+}
+
+type Mutation {
+  updateClient(clientId: String!, client: ClientInputType!): ClientType!
+  deleteClient(clientId: String!): String!
+  deleteClientAndPortfolioByIdUseCase(clientId: String!): String!
+}
+
+input ClientInputType {
+  address: String!
+  blocked: String!
+  cellPhone: String!
+  channel: String!
+  clientId: String!
+  country: String!
+  customerGroup: CustomerGroupInputType!
+  customerSchema: Float!
+  distrChan: String!
+  division: String!
+  fiscalCode1: String!
+  fiscalCode2: String!
+  frequency: Boolean!
+  frequencyDays: String!
+  idPortfolio: String!
+  immediateDelivery: Boolean!
+  industryCode: String!
+  industryCode1: String!
+  isEnrollment: Boolean!
+  name: String!
+  name2: String!
+  office: String!
+  paymentCondition: String!
+  paymentMethods: [PaymentMethodInputType!]!
+  priceGroup: String!
+  priceList: String!
+  routeId: String!
+  salesOrg: String!
+  supplyCenter: String!
+  updateDate: UpdateDateInputType!
+  vendorGroup: String!
+}
+
+input CustomerGroupInputType {
+  group: String!
+  group1: String!
+  group2: String!
+  group3: String!
+  group4: String!
+  group5: String!
+}
+
+input PaymentMethodInputType {
+  clientId: String!
+  typeCredit: String!
+  creditLimit: Float!
+  creditUsed: Float!
+  amountAvailable: Float!
+}
+
+input UpdateDateInputType {
+  date: String!
 }

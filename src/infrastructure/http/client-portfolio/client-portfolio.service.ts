@@ -22,4 +22,25 @@ export class ClientPortfolioService implements ClientPortfolioGateway {
       .get<PortfolioDto[]>(this.clientPortfolioApiUrl)
       .pipe(map((response) => response.data));
   }
+
+  getPortfolioById(id: string): Observable<PortfolioDto> {
+    return this.httpService
+      .get<PortfolioDto>(`${this.clientPortfolioApiUrl}/${id}`)
+      .pipe(map((response) => response.data));
+  }
+
+  updatePortfolio(
+    id: string,
+    portfolio: PortfolioDto,
+  ): Observable<PortfolioDto> {
+    return this.httpService
+      .put<PortfolioDto>(`${this.clientPortfolioApiUrl}/${id}`, portfolio)
+      .pipe(map((response) => response.data));
+  }
+
+  deletePortfolio(id: string): Observable<string> {
+    return this.httpService
+      .delete<string>(`${this.clientPortfolioApiUrl}/${id}`)
+      .pipe(map((response) => response.data));
+  }
 }
