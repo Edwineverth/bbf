@@ -4,6 +4,7 @@ import { ConfigModule } from '@nestjs/config';
 import ClientConfig from '../config/client.config';
 import { ClientService } from './client/client.service';
 import { ClientPortfolioService } from './client-portfolio/client-portfolio.service';
+import { RedisService } from '../redis/redis.provider';
 
 @Module({
   imports: [HttpModule, ConfigModule.forFeature(ClientConfig)],
@@ -16,6 +17,7 @@ import { ClientPortfolioService } from './client-portfolio/client-portfolio.serv
       provide: 'ClientPortfolioGateway',
       useClass: ClientPortfolioService,
     },
+    RedisService,
   ],
   exports: ['ClientGateway', 'ClientPortfolioGateway'],
 })

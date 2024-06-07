@@ -15,6 +15,7 @@ export class ClientPortfolioService implements ClientPortfolioGateway {
     private readonly httpService: HttpService,
   ) {
     this.clientPortfolioApiUrl = `${this.configHttp.portfolioApiUrl}/portfolios`;
+    console.log('url', this.clientPortfolioApiUrl);
   }
 
   getPortfolios(): Observable<PortfolioDto[]> {

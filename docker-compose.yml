@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  redis:
+    image: redis
+    container_name: redis
+    ports:
+      - "6379:6379"
+    networks:
+      - backend
+  bbf:
+    build: .
+    container_name: bbf
+    networks:
+      - backend
+    ports:
+      - "3000:3000"
+    environment:
+      - CLIENT_API_URL=http://api-client:8080
+      - PORTFOLIO_API_URL=http://api-client-portfolio:8081
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+    depends_on:
+      - redis
+
+volumes:
+  bbf-data:
+networks:
+  backend:
+    external: true

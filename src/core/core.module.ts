@@ -15,6 +15,6 @@ import { PortfolioUseCase } from './use-case/portfolio.use-case';
       useClass: PortfolioUseCase,
     },
   ],
-  exports: ['ClientUseCaseInterface'],
+  exports: ['ClientUseCaseInterface', 'PortfolioUseCaseInterface'],
 })
 export class CoreModule {}

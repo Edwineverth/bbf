@@ -2,6 +2,7 @@ import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { PortfolioUseCaseInterface } from '../../../ports/use-case/portfolio.usecase';
 import { Inject } from '@nestjs/common';
 import { PortfolioType } from '../types/portfolio.type';
+import { PortfolioInputType } from '../types/portfolio-input.type';
 
 @Resolver()
 export class ClientPortfolioResolver {
@@ -21,14 +22,14 @@ export class ClientPortfolioResolver {
   }
 
   @Mutation(() => PortfolioType)
-  createPortfolio(@Args('portfolio') portfolio: PortfolioType) {
+  createPortfolio(@Args('portfolio') portfolio: PortfolioInputType) {
     return this.clientPortfolioUseCase.createPortfolioUseCase(portfolio);
   }
 
   @Mutation(() => PortfolioType)
   updatePortfolio(
     @Args('route', { type: () => String }) portfolioId: string,
-    @Args('portfolio') portfolio: PortfolioType,
+    @Args('portfolio') portfolio: PortfolioInputType,
   ) {
     return this.clientPortfolioUseCase.updatePortfolioUseCase(
       portfolioId,
