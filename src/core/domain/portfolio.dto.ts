@@ -9,18 +9,18 @@ export interface PortfolioDto {
 export interface Item {
   sku: string;
   title: string;
-  categoryId?: string;
+  categoryId: string;
   category: string;
-  brand?: string;
-  classification?: string;
+  brand: string;
+  classification: string;
   unitsPerBox: string;
   minOrderUnits?: string;
   packageDescription: string;
   packageUnitDescription: string;
-  quantity_max_redeem: any;
-  redeem_unit: any;
-  order_reason_redeem: any;
-  sku_redeem: any;
+  quantity_max_redeem?: any;
+  redeem_unit?: any;
+  order_reason_redeem?: any;
+  sku_redeem?: any;
   price: Price;
   points: number;
 }

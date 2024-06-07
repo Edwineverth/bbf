@@ -71,10 +71,10 @@ type PriceType {
 type ItemType {
   sku: String!
   title: String!
-  categoryId: String
+  categoryId: String!
   category: String!
-  brand: String
-  classification: String
+  brand: String!
+  classification: String!
   unitsPerBox: String!
   minOrderUnits: String
   packageDescription: String!
@@ -97,19 +97,21 @@ type PortfolioType {
 
 type ClientPortfolioType {
   client: ClientType!
-  portfolios: [PortfolioType!]!
+  portfolios: [PortfolioType!]
 }
 
 type Query {
   getClientsPortfolios: [ClientPortfolioType!]!
   getClientAndPortfolioById(clientId: String!): ClientPortfolioType!
+  getClients: [ClientType!]!
   getClientById(clientId: String!): ClientType!
 }
 
 type Mutation {
+  createClient(client: ClientInputType!): ClientType!
   updateClient(clientId: String!, client: ClientInputType!): ClientType!
   deleteClient(clientId: String!): String!
-  deleteClientAndPortfolioByIdUseCase(clientId: String!): String!
+  deleteClientAndPortfolioByClientId(clientId: String!): String!
 }
 
 input ClientInputType {

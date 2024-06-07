@@ -14,7 +14,7 @@ export class ClientPortfolioService implements ClientPortfolioGateway {
     private configHttp: ConfigType<typeof ClientConfig>,
     private readonly httpService: HttpService,
   ) {
-    this.clientPortfolioApiUrl = this.configHttp.portfolioApiUrl;
+    this.clientPortfolioApiUrl = `${this.configHttp.portfolioApiUrl}/portfolios`;
   }
 
   getPortfolios(): Observable<PortfolioDto[]> {
@@ -26,6 +26,12 @@ export class ClientPortfolioService implements ClientPortfolioGateway {
   getPortfolioById(id: string): Observable<PortfolioDto> {
     return this.httpService
       .get<PortfolioDto>(`${this.clientPortfolioApiUrl}/${id}`)
+      .pipe(map((response) => response.data));
+  }
+
+  createPortfolio(portfolio: PortfolioDto): Observable<PortfolioDto> {
+    return this.httpService
+      .post<PortfolioDto>(this.clientPortfolioApiUrl, portfolio)
       .pipe(map((response) => response.data));
   }
 
@@ -41,6 +47,18 @@ export class ClientPortfolioService implements ClientPortfolioGateway {
   deletePortfolio(id: string): Observable<string> {
     return this.httpService
       .delete<string>(`${this.clientPortfolioApiUrl}/${id}`)
+      .pipe(map((response) => response.data));
+  }
+
+  deletePortfolioByClientId(clientId: string): Observable<string> {
+    return this.httpService
+      .delete<string>(`${this.clientPortfolioApiUrl}/client/${clientId}`)
+      .pipe(map((response) => response.data));
+  }
+
+  getPortfoliosByClientId(clientId: string): Observable<PortfolioDto[]> {
+    return this.httpService
+      .get<PortfolioDto[]>(`${this.clientPortfolioApiUrl}/client/${clientId}`)
       .pipe(map((response) => response.data));
   }
 }

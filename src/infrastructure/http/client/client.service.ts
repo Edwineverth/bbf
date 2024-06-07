@@ -28,6 +28,12 @@ export class ClientService implements ClientGateway {
       .pipe(map((response) => response.data));
   }
 
+  createClient(client: ClientDto): Observable<ClientDto> {
+    return this.httpService
+      .post<ClientDto>(this.clientApiUrl, client)
+      .pipe(map((response) => response.data));
+  }
+
   updateClient(clientId: string, client: ClientDto): Observable<ClientDto> {
     return this.httpService
       .put<ClientDto>(`${this.clientApiUrl}/${clientId}`, client)

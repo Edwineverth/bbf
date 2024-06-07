@@ -7,6 +7,6 @@ export class ClientPortfolioType {
   @Field(() => ClientType)
   client: ClientType;
 
-  @Field(() => [PortfolioType])
-  portfolios: PortfolioType[];
+  @Field(() => [PortfolioType], { nullable: true })
+  portfolios?: PortfolioType[];
 }

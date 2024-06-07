@@ -24,15 +24,25 @@ export class ClientResolver {
     );
   }
 
+  @Query(() => [ClientType])
+  getClients() {
+    return this.clientPortfoliosUseCase.getClients();
+  }
+
   @Query(() => ClientType)
   getClientById(@Args('clientId', { type: () => String }) clientId: string) {
     return this.clientPortfoliosUseCase.getClientByIdUseCase(clientId);
   }
 
   @Mutation(() => ClientType)
+  createClient(@Args('client') client: ClientInputType) {
+    return this.clientPortfoliosUseCase.createClientUseCase(client);
+  }
+
+  @Mutation(() => ClientType)
   updateClient(
     @Args('clientId', { type: () => String }) clientId: string,
-    @Args('client', { type: () => ClientInputType }) client: ClientType,
+    @Args('client') client: ClientInputType,
   ) {
     return this.clientPortfoliosUseCase.updateClientUseCase(clientId, client);
   }
@@ -43,7 +53,7 @@ export class ClientResolver {
   }
 
   @Mutation(() => String)
-  deleteClientAndPortfolioByIdUseCase(
+  deleteClientAndPortfolioByClientId(
     @Args('clientId', { type: () => String }) clientId: string,
   ) {
     return this.clientPortfoliosUseCase.deleteClientAndPortfolioByIdUseCase(

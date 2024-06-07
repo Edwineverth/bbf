@@ -4,11 +4,13 @@ import { ClientType } from '../../adapters/graphql/types/client.type';
 import { ClientDto } from '../../core/domain/client.dto';
 
 export interface ClientUseCaseInterface {
+  getClients(): Observable<ClientDto[]>;
   getClientsPortfoliosUseCase(): Observable<ClientPortfolioType[]>;
   getClientAndPortfolioByIdUseCase(
     clientId: string,
   ): Observable<ClientPortfolioType>;
   getClientByIdUseCase(clientId: string): Observable<ClientType>;
+  createClientUseCase(client: ClientDto): Observable<ClientDto>;
   updateClientUseCase(
     clientId: string,
     client: ClientDto,

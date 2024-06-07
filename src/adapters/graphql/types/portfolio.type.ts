@@ -29,17 +29,17 @@ export class ItemType {
   @Field()
   title: string;
 
-  @Field({ nullable: true })
-  categoryId?: string;
+  @Field()
+  categoryId: string;
 
   @Field()
   category: string;
 
-  @Field({ nullable: true })
-  brand?: string;
+  @Field()
+  brand: string;
 
-  @Field({ nullable: true })
-  classification?: string;
+  @Field()
+  classification: string;
 
   @Field()
   unitsPerBox: string;
@@ -54,16 +54,16 @@ export class ItemType {
   packageUnitDescription: string;
 
   @Field({ nullable: true })
-  quantity_max_redeem: number;
+  quantity_max_redeem?: number;
 
   @Field({ nullable: true })
-  redeem_unit: number;
+  redeem_unit?: number;
 
   @Field({ nullable: true })
-  order_reason_redeem: string;
+  order_reason_redeem?: string;
 
   @Field({ nullable: true })
-  sku_redeem: number;
+  sku_redeem?: number;
 
   @Field(() => PriceType)
   price: PriceType;
